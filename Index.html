@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <?!= include('Styles'); ?>
+</head>
+<body>
+  <div id="toast" class="toast"></div>
+  <div id="authView" class="auth-wrap">
+    <div class="auth-brand"><div class="brand-mark">C</div><span>Creator<span class="accent">Hub</span></span></div>
+    <div class="auth-card">
+      <div class="eyebrow">PRIVATE CREATOR WORKSPACE</div>
+      <h1 id="authTitle">Welcome back</h1>
+      <p class="muted" id="authSubtitle">Sign in to continue creating together.</p>
+      <div id="loginForm">
+        <label>Username</label><input id="loginUsername" autocomplete="username" placeholder="Your username">
+        <label>Password</label><input id="loginPassword" type="password" autocomplete="current-password" placeholder="Your password">
+        <button class="primary full" onclick="login()">Sign in <span>→</span></button>
+        <div class="auth-links"><button class="link" onclick="showAuth('signup')">Create account</button><button class="link" onclick="showAuth('reset')">Forgot password?</button></div>
+      </div>
+      <div id="signupForm" class="hidden">
+        <label>Username</label><input id="signupUsername" autocomplete="username" placeholder="Choose a username">
+        <label>Password (10+ characters)</label><input id="signupPassword" type="password" autocomplete="new-password" placeholder="Create a strong password">
+        <label>Private invitation code</label><input id="inviteCode" type="password" placeholder="Provided by workspace owner">
+        <button class="primary full" onclick="signup()">Create private account →</button>
+        <div class="auth-links"><button class="link" onclick="showAuth('login')">Back to sign in</button></div>
+      </div>
+      <div id="resetForm" class="hidden">
+        <label>Username</label><input id="resetUsername" placeholder="Your username">
+        <label>One-time reset code</label><input id="resetCode" placeholder="Ask the administrator">
+        <label>New password</label><input id="resetNewPassword" type="password" placeholder="10+ characters">
+        <button class="primary full" onclick="resetPassword()">Reset password</button>
+        <p class="muted small">The workspace administrator must generate a temporary reset code for you.</p>
+        <div class="auth-links"><button class="link" onclick="showAuth('login')">Back to sign in</button></div>
+      </div>
+    </div>
+    <div class="auth-foot">A focused space for ideas that become stories.</div>
+  </div>
+  <div id="appView" class="app hidden">
+    <aside class="sidebar" id="sidebar">
+      <div class="side-brand"><div class="brand-mark">C</div><span>Creator<span class="accent">Hub</span></span></div>
+      <div class="workspace-tag">WORKSPACE <span class="live-dot"></span></div>
+      <nav>
+        <button class="nav-item active" data-page="dashboard" onclick="navigate('dashboard')"><span>▦</span> Overview</button>
+        <button class="nav-item" data-page="tasks" onclick="navigate('tasks')"><span>✓</span> Tasks</button>
+        <button class="nav-item" data-page="messages" onclick="navigate('messages')"><span>◌</span> Messages <b id="messageBadge" class="nav-badge hidden">0</b></button>
+        <button class="nav-item" data-page="content" onclick="navigate('content')"><span>▤</span> Content planner</button>
+        <button class="nav-item" data-page="settings" onclick="navigate('settings')"><span>⚙</span> Settings</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="mini-profile"><div class="avatar" id="sideAvatar">C</div><div><b id="sideName">Creator</b><small id="sideRole">Member</small></div><span class="online-dot"></span></div>
+        <button class="nav-item logout" onclick="logout()">↪ <span>Sign out</span></button>
+      </div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><button class="hamburger" onclick="toggleSidebar()">☰</button><div><div class="eyebrow">CREATOR WORKSPACE</div><h2 id="pageTitle">Overview</h2></div><div class="top-actions"><button class="icon-btn" onclick="toggleTheme()" title="Toggle theme">◐</button><div class="top-user"><div class="avatar small-avatar" id="topAvatar">C</div><span id="topName">Creator</span></div></div></header>
+      <section id="pageContent" class="page-content"><div class="loading"><div class="spinner"></div>Loading workspace...</div></section>
+    </main>
+  </div>
+  <?!= include('App'); ?>
+</body>
+</html>
